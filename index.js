@@ -1,8 +1,8 @@
-const tg = window.Telegram.WebApp;
-tg.ready();
+// const tg = window.Telegram.WebApp;
+// tg.ready();
+window.TelegramWebApp.initData();
+const userId = window.TelegramWebApp.initDataUnsafe.user.id;
 
-const user = tg.initDataUnsafe.user;
-let TelegramID = `${user.id}`;
 
 
 const mainsection = document.querySelector("#main-section");
@@ -94,10 +94,9 @@ function accountInfo(response){
 function auth(response){
     console.log(response)
     if (response == true){
-        const user = tg.initDataUnsafe.user;
-        let TelegramID = `${user.id}`;
         
-        const url = "http://127.0.0.1:8000/user/account/getInfo/" + TelegramID;
+        
+        const url = "http://127.0.0.1:8000/user/account/getInfo/" + userId;
         const data = 0
         sendPostRequest(url, data)
             .then(response => accountInfo(response))
@@ -105,7 +104,7 @@ function auth(response){
     }
 }
 
-const url = "http://127.0.0.1:8000/user/account/getValid/" + TelegramID;
+const url = "http://127.0.0.1:8000/user/account/getValid/" + userId;
 const data = 0
 sendPostRequest(url, data)
     .then(response => auth(response))
