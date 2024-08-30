@@ -1,7 +1,3 @@
-// const tg = window.Telegram.WebApp;
-// tg.ready();
-
-
 const mainsection = document.querySelector("#main-section");
 const accountsection = document.querySelector("#accounts-section");
 const subscriptionssection = document.querySelector("#subscriptions-section");
@@ -91,30 +87,32 @@ function accountInfo(response){
 function auth(response){
     console.log(response)
     if (response == true){
+        if (typeof window.TelegramWebApp !== 'undefined') {
+            window.TelegramWebApp.ready();
+    
+            const userId = window.TelegramWebApp.initDataUnsafe.user.id;
+            const url = "http://127.0.0.1:8000/user/account/getInfo/" + userId;
+            const data = 0
+            sendPostRequest(url, data)
+                .then(response => accountInfo(response))
+                .catch(error => console.error('Ошибка:', error));   
+        } else {
+            console.log('Telegram Web Apps SDK не загружен.');
+        }
         
         
-        const url = "http://127.0.0.1:8000/user/account/getInfo/" + userId;
-        const data = 0
-        sendPostRequest(url, data)
-            .then(response => accountInfo(response))
-            .catch(error => console.error('Ошибка:', error));
     }
 }
 window.onload = function() {
-    // Проверяем, что TelegramWebApp существует
     if (typeof window.TelegramWebApp !== 'undefined') {
-        // Убедись, что Telegram Web Apps SDK инициализирован
         window.TelegramWebApp.ready();
-        
-        // Получение ID пользователя
+
         const userId = window.TelegramWebApp.initDataUnsafe.user.id;
         const url = "http://127.0.0.1:8000/user/account/getValid/" + userId;
         const data = 0
         sendPostRequest(url, data)
             .then(response => auth(response))
-            .catch(error => console.error('Ошибка:', error));
-        // Отображение ID пользователя на экране
-        
+            .catch(error => console.error('Ошибка:', error));      
     } else {
         console.log('Telegram Web Apps SDK не загружен.');
     }
