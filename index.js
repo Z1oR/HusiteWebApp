@@ -118,9 +118,10 @@ const url = "http://127.0.0.1:8000/user/account/getValid/" + userId;
 const data = 0
 sendPostRequest(url, data)
     .then(response => auth(response))
-    .catch(error => console.error('Ошибка:', error));      
+    // .catch(error => console.error('Ошибка:', error));
+    .catch(error => document.querySelector("#premium").innerHTML = error)
     
-
+// document.querySelector("#premium").innerHTML = error
 
 
 
