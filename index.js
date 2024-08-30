@@ -47,7 +47,15 @@ LeaveSub.addEventListener("click", () => {
 
 
 
-
+function getTelegramId() {
+    if (window.Telegram.WebApp) {
+      const tgid = window.Telegram.WebApp.initDataUnsafe.user.id;
+      return tgid;
+    } else {
+      console.error('Telegram WebApp API не доступен');
+      return null;
+    }
+  }
 
 
 async function sendPostRequest(url, data) {
@@ -91,10 +99,7 @@ function accountInfo(response){
 function auth(response){
     console.log(response)
     if (response == true){
-        
-        window.TelegramWebApp.ready();
-    
-        const userId = window.TelegramWebApp.initDataUnsafe.user.id;
+        let userId = getTelegramId()
         const url = "http://127.0.0.1:8000/user/account/getInfo/" + userId;
         const data = 0
         sendPostRequest(url, data)
@@ -105,18 +110,16 @@ function auth(response){
         
     }
 }
-window.onload = function() {
 
-    window.TelegramWebApp.ready();
 
-    const userId = window.TelegramWebApp.initDataUnsafe.user.id;
-    const url = "http://127.0.0.1:8000/user/account/getValid/" + userId;
-    const data = 0
-    sendPostRequest(url, data)
-        .then(response => auth(response))
-        .catch(error => console.error('Ошибка:', error));      
+
+let userId = getTelegramId()
+const url = "http://127.0.0.1:8000/user/account/getValid/" + userId;
+const data = 0
+sendPostRequest(url, data)
+    .then(response => auth(response))
+    .catch(error => console.error('Ошибка:', error));      
     
-};
 
 
 
