@@ -1,68 +1,138 @@
-* {
+body {
+  background-color: #282c34;
   margin: 0;
-  padding: 0;
-  color: white;
-  background-color: #414141;
-  font-family: "New Amsterdam", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-}
-
-header {
+  font-family: "Arial", sans-serif;
   display: flex;
   flex-direction: column;
-  text-align: center;
+  align-items: center;
 }
 
-main .AccountScreen {
-  display: none;
-  flex-direction: column;
-  text-align: center;
-  margin-top: 100px;
-}
-main .substrictionScreen {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  margin-top: 70px;
-}
-main .substrictionScreen button {
-  margin: 0 auto;
-  margin-top: 40px;
-  width: 120px;
-  height: 50px;
-  border-radius: 10px;
-  border: 1px solid #004b04;
-  color: white;
-  background-color: #00b409;
-  cursor: pointer;
-}
-main .substrictionScreen button:hover {
-  background-color: #029c0a;
-}
-
-footer {
+.container, .accounts-section {
   width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.card, .accounts-card {
+  background-color: #393e46;
+  border-radius: 10px;
+  padding: 20px;
+  width: 300px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  margin: 20px 0;
+}
+
+.header, .accounts-title {
+  font-size: 24px;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.title, .username, .main-menu {
+  font-weight: bold;
+  color: #fff;
+}
+
+.premium {
+  margin-left: 10px;
+  margin-right: 10px;
+  color: #a8a8a8;
+}
+
+.button, .button-small {
+  background-color: #4f8ef7;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 0;
+  margin: 5px;
+  width: 100%;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.button-small {
+  width: auto;
+  font-size: 14px;
+  padding: 5px 10px;
+}
+
+.button:hover, .button-small:hover {
+  background-color: #3c74d1;
+}
+
+.accounts-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.account-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #525a65;
+  border-radius: 5px;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+.account-info {
+  display: flex;
+}
+
+.account-info img {
+  display: flex;
+  align-items: left;
+  width: 50px;
   height: 50px;
+  border: 3px solid black;
+}
+
+.account-info p {
+  color: #fff;
+  margin: 0;
+}
+
+.account-info-content {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  margin-left: 10px;
+}
+
+.section {
+  opacity: 0;
+  transition: opacity 0.5s ease;
   position: absolute;
-  bottom: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
-footer .screen1Footer {
+
+.section.active {
+  opacity: 1;
   display: flex;
-  flex-direction: row;
-  height: 50px;
 }
-footer .screen1Footer button {
-  width: 100%;
-  height: 90%;
-  margin-left: 20px;
-  margin-right: 20px;
-  margin-bottom: 20px;
-  border-radius: 10px;
-  cursor: pointer;
-  background-color: #070f38;
-  border: 1px solid #00b7ff;
+
+.section.hidden {
+  opacity: 0;
+  display: none;
 }
-footer .screen1Footer button:hover {
-  background-color: #0a1964;
+
+.active {
+  opacity: 1;
+  display: flex;
+}
+
+.hidden {
+  opacity: 0;
+  display: none;
+}
+
+.subscriptions-card {
+  width: 400px;
+  height: 200px;
 }/*# sourceMappingURL=style.css.map */
