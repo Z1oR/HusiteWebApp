@@ -46,79 +46,100 @@ LeaveSub.addEventListener("click", () => {
 })
 
 
+const tg = window.Telegram.WebApp;
 
-function getTelegramId() {
-    if (window.Telegram.WebApp) {
-      const tgid = window.Telegram.WebApp.initDataUnsafe.user.id;
-      return tgid;
-    } else {
-      console.error('Telegram WebApp API не доступен');
-      return null;
-    }
-  }
+formDetails.append('tg.initData', tg.initData);
 
+const response = await fetch('http://127.0.0.1:8000/user/account/getValid', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    body: formDetails,
+});
 
-async function sendPostRequest(url, data) {
-    try {
-        const response = await fetch(url, {
-            method: 'POST', // Метод запроса
-            headers: {
-                'Content-Type': 'application/json' // Тип содержимого
-            },
-            body: JSON.stringify(data) // Преобразование данных в JSON
-        });
-
-        // Проверка, что запрос прошёл успешно
-        if (!response.ok) {
-            throw new Error(`Ошибка: ${response.status}`);
-        }
-
-        // Парсинг ответа от сервера
-        const result = await response.json();
-        return result;
-    } catch (error) {
-        console.error('Ошибка при отправке POST-запроса:', error);
-    }
+if (response.ok) {
+        const data = await response.json();
+        localStorage.setItem('token', data.access_token);
 }
-function accountInfo(response){
-    console.log(response)
-    var username = document.querySelector("#username");
-    username.innerHTML = "👋 " + response.name;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// async function sendPostRequest(url, data) {
+//     try {
+//         const response = await fetch(url, {
+//             method: 'POST', // Метод запроса
+//             headers: {
+//                 'Content-Type': 'application/json' // Тип содержимого
+//             },
+//             body: JSON.stringify(data) // Преобразование данных в JSON
+//         });
+
+//         // Проверка, что запрос прошёл успешно
+//         if (!response.ok) {
+//             throw new Error(`Ошибка: ${response.status}`);
+//         }
+
+//         // Парсинг ответа от сервера
+//         const result = await response.json();
+//         return result;
+//     } catch (error) {
+//         console.error('Ошибка при отправке POST-запроса:', error);
+//     }
+// }
+// function accountInfo(response){
+//     console.log(response)
+//     var username = document.querySelector("#username");
+//     username.innerHTML = "👋 " + response.name;
     
-    var premium = document.querySelector("#premium");
-    if (response.sub == "Admin"){
-        premium.innerHTML = "Ты админ, красавчик, жизнь удалась!"
-    }
-    if (response.sub == "user"){
-        premium.innerHTML = "Поддержи меня, купи подписку!"
-    }
-    if (response.sub == "silver" || response.sub == "gold" || response.sub == "platinum"){
-        premium.innerHTML = "У тебя есть подписка, спасибо за поддержку ♥"
-    }
-}
-function auth(response){
-    console.log(response)
-    if (response == true){
-        let userId = getTelegramId()
-        const url = "http://127.0.0.1:8000/user/account/getInfo/" + userId;
-        const data = 0
-        sendPostRequest(url, data)
-            .then(response => accountInfo(response))
-            .catch(error => console.error('Ошибка:', error));   
+//     var premium = document.querySelector("#premium");
+//     if (response.sub == "Admin"){
+//         premium.innerHTML = "Ты админ, красавчик, жизнь удалась!"
+//     }
+//     if (response.sub == "user"){
+//         premium.innerHTML = "Поддержи меня, купи подписку!"
+//     }
+//     if (response.sub == "silver" || response.sub == "gold" || response.sub == "platinum"){
+//         premium.innerHTML = "У тебя есть подписка, спасибо за поддержку ♥"
+//     }
+// }
+// function auth(response){
+//     console.log(response)
+//     if (response == true){
+//         let userId = getTelegramId()
+//         const url = "http://127.0.0.1:8000/user/account/getInfo/" + userId;
+//         const data = 0
+//         sendPostRequest(url, data)
+//             .then(response => accountInfo(response))
+//             .catch(error => console.error('Ошибка:', error));   
         
         
         
-    }
-}
+//     }
+// }
 
 
 
-let userId = getTelegramId()
-const url = "http://127.0.0.1:8000/user/account/getValid/" + userId;
-const data = 0
-sendPostRequest(url, data)
-    .then(response => auth(response))
-    .catch(error => console.error('Ошибка:', error));
+// let userId = getTelegramId()
+// const url = "http://127.0.0.1:8000/user/account/getValid/" + userId;
+// const data = 0
+// sendPostRequest(url, data)
+//     .then(response => auth(response))
+//     .catch(error => console.error('Ошибка:', error));
 
     
 
