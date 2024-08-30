@@ -1,8 +1,5 @@
 // const tg = window.Telegram.WebApp;
 // tg.ready();
-window.TelegramWebApp.initData();
-const userId = window.TelegramWebApp.initDataUnsafe.user.id;
-
 
 
 const mainsection = document.querySelector("#main-section");
@@ -103,11 +100,25 @@ function auth(response){
             .catch(error => console.error('Ошибка:', error));
     }
 }
+window.onload = function() {
+    // Проверяем, что TelegramWebApp существует
+    if (typeof window.TelegramWebApp !== 'undefined') {
+        // Убедись, что Telegram Web Apps SDK инициализирован
+        window.TelegramWebApp.ready();
+        
+        // Получение ID пользователя
+        const userId = window.TelegramWebApp.initDataUnsafe.user.id;
+        const url = "http://127.0.0.1:8000/user/account/getValid/" + userId;
+        const data = 0
+        sendPostRequest(url, data)
+            .then(response => auth(response))
+            .catch(error => console.error('Ошибка:', error));
+        // Отображение ID пользователя на экране
+        
+    } else {
+        console.log('Telegram Web Apps SDK не загружен.');
+    }
+};
 
-const url = "http://127.0.0.1:8000/user/account/getValid/" + userId;
-const data = 0
-sendPostRequest(url, data)
-    .then(response => auth(response))
-    .catch(error => console.error('Ошибка:', error));
 
 
