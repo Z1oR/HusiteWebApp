@@ -59,7 +59,7 @@ const response = fetch('http://127.0.0.1:8000/user/account/getValid', {
 });
 
 if (response.ok) {
-        const data = await response.json();
+        const data = response.json();
         localStorage.setItem('token', data.access_token);
 }
 
