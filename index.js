@@ -50,7 +50,7 @@ const tg = window.Telegram.WebApp;
 
 formDetails.append('tg.initData', tg.initData);
 
-const response = await fetch('http://127.0.0.1:8000/user/account/getValid', {
+const response = fetch('http://127.0.0.1:8000/user/account/getValid', {
     method: 'POST',
     headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
