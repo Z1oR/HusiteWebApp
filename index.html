@@ -4,55 +4,70 @@
     <link rel="stylesheet" href="style.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HusiteClient</title>
+    <title>Husite Client</title>
 </head>
 <body>
-    <header>
-        <div class="screen1Header">
-            <h2><b>HusiteClient</b></h2>
-            <h4><b>Лучшие</b> боты у нас!✅</h4>
+    <!-- Главное меню -->
+    <div class="container" id="main-section">
+        <div class="card" >
+            <div class="header">
+                🚀 <span class="title">Husite Client</span>
+            </div>
+            <p id="username" class="username">👋 Error </p>
+            <p id="premium" class="premium">Error<3</p>
+            <p class="main-menu">⚡ Главное меню</p>
+            <button id="MyBotsBtn" class="button">Мои боты</button>
+            <button id="MySubBtn" class="button">Подписки</button>
+            <button class="button">Информация об аккаунте</button>
         </div>
-        
-    </header>
+    </div>
 
-    <main>
-        <div class="AccountScreen">
-            <h1 style="margin-bottom: 30px;">Информация!</h1>
-            <h2>id: 1</h2>
-            <h2>Имя: Z1oR</h2>
-            <h2>Подписка: Admin</h2>
-            <h2>ТелеграмId: 2929929292</h2>
+    <!-- Секция аккаунтов -->
+    <div id="accounts-section">
+        <div class="accounts-card">
+            <div class="accounts-header">
+                <button class="button-small">Запустить бота</button>
+                <button id="LeaveAccount" class="button-small">Назад...</button>
+            </div>
+            <h2 class="accounts-title">Боты</h2>
+            <div class="account-item">
+                <div class="account-info">
+                    <img class="imageForBots" src="./ImageForBots.jfif" alt="">
+                    <div class="account-info-content">
+                        <p>Z1oRGG</p>
+                        <p>21 | lite</p>
+                        <p>баланс: 20000</p>
+                    </div>
+                    
+                </div>
+                <button class="button-small">Выбрать...</button>
+            </div>
+            <div class="account-item">
+                <div class="account-info">
+                    <img class="imageForBots" src="./ImageForBots.jfif" alt="">
+                    <div class="account-info-content">
+                        <p>Z1oR</p>
+                        <p>1 | Clasic</p>
+                        <p>баланс: 200 000</p>
+                    </div>
+                </div>
+                <button class="button-small">Выбрать...</button>
+            </div>
         </div>
+    </div>
 
-        <div class="substrictionScreen">
-            <h1 style="margin-bottom: 30px;">Подписки</h1>
-            <h2><b>Platinum-30d</b> 499p</h2>
-            <h2><b>Gold-15d</b> 399p</h2>
-            <h2><b>Silver-10d</b> 199p</h2>
-
-            <button>Купить</button>
+    <!-- Секция подписок -->
+    <div id="subscriptions-section">
+        <div class="subscriptions-card">
+            <div class="subscriptions-header">
+                <button id="LeaveSub" class="button-small">Назад...</button>
+            </div>
+            <h2 class="subscriptions-title">Подписки</h2>
+            <!-- Здесь можно добавить содержимое для подписок -->
+            <p>Здесь будут отображаться ваши подписки.</p>
         </div>
-    </main>
+    </div>
 
-
-
-    <footer>
-        <div class="screen1Footer">
-            <button id="buttonSubstriction">
-              Подписки
-              </button>
-              <button id="buttonAccount">
-                  Аккаунт
-              </button>
-              <button id="buttonBot">
-                  Бот
-              </button>  
-          </div>
-
-
-
-          
-    </footer>
-
+    <script src="index.js"></script>
 </body>
 </html>
